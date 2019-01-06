@@ -7,6 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -46,526 +47,30 @@ public class CartTestClass {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
-//	@Test
-//	public void EmptyCartTest() {
-//		driver.findElement(By.id("cart-link")).click();
-//		
-//		assertEquals(defaultUrl + "#cart", driver.getCurrentUrl());
-//		
-//		assertTrue(driver.findElement(By.xpath("//*[@id=\"cart\"]/section[2]/div/div[1]/div/table/tr/td[1]/p")).isDisplayed());
-//		
-//		assertTrue(driver.findElement(By.xpath("//*[@id=\"cart-subtotals\"]")).getText().equals("0.00 BAM"));
-//		assertTrue(driver.findElement(By.xpath("//*[@id=\"total-price\"]")).getText().equals("0.00 BAM"));
-//		
-//		assertTrue(driver.findElement(By.xpath("//*[@id=\"cart\"]/section[2]/div/div[1]/div/table/tr/td[2]/div/button")).isDisplayed());
-//		driver.findElement(By.xpath("//*[@id=\"cart\"]/section[2]/div/div[1]/div/table/tr/td[2]/div/button")).click();
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		assertEquals(defaultUrl + "#shop", driver.getCurrentUrl());
-//		
-//	}
-//	
-//	@Test
-//	public void NotEmptyCartTest() {
-//		
-//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\\\"landing\\\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div")));
-//		
-//		WebElement item = driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div"));
-//		
-//		Actions builder = new Actions(driver);
-//		
-//		Action hoverOverItem = builder.moveToElement(item).pause(1000).build();
-//		
-//		hoverOverItem.perform();
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//				
-//		driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div/div/button")).click();
-//		
-//		try {
-//			Thread.sleep(2000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		assertTrue(driver.findElement(By.className("swal-modal")).isDisplayed());
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		driver.findElement(By.className("swal-button")).click();
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		driver.findElement(By.id("cart-link")).click();
-//		
-//		assertEquals(defaultUrl + "#cart", driver.getCurrentUrl());
-//		
-//		for (int i = 1; i < 5; i++) {
-//			assertTrue(driver.findElement(By.className("column-"+i)).isDisplayed());
-//		}
-//		
-//		assertTrue(driver.findElement(By.className("table-row")).isDisplayed());
-//		
-//		assertTrue(driver.findElement(By.xpath("//*[@id=\"p-quantity\"]")).getAttribute("value").equals("1"));
-//		
-//		driver.findElement(By.xpath("//*[@id=\"3\"]/td[4]/div/button[2]")).click();
-//		
-//		driver.findElement(By.xpath("//*[@id=\"3\"]/td[4]/div/button[2]")).click();
-//		
-//		assertTrue(driver.findElement(By.xpath("//*[@id=\"p-quantity\"]")).getAttribute("value").equals("3"));
-//		
-//		driver.findElement(By.xpath("//*[@id=\"3\"]/td[4]/div/button[1]")).click();
-//		
-//		driver.findElement(By.xpath("//*[@id=\"3\"]/td[4]/div/button[1]")).click();
-//		
-//		assertTrue(driver.findElement(By.xpath("//*[@id=\"p-quantity\"]")).getAttribute("value").equals("1"));
-//		
-//		driver.findElement(By.xpath("//*[@id=\"p-quantity\"]")).sendKeys("5");
-//		
-//		assertTrue(driver.findElement(By.xpath("//*[@id=\"p-quantity\"]")).getAttribute("value").equals("15"));
-//		
-//		assertTrue(driver.findElement(By.xpath("//*[@id=\"cart-subtotals\"]")).getText().equals("90.00 BAM"));
-//		
-//		assertTrue(driver.findElement(By.xpath("//*[@id=\"total-price\"]")).getText().equals("90.00 BAM"));
-//		
-//		driver.findElement(By.xpath("//*[@id=\"3\"]/td[4]/div/button[2]")).click();
-//		
-//		driver.findElement(By.xpath("//*[@id=\"update-cart-button\"]")).click();
-//		
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("swal-modal")));
-//		
-//		assertTrue(driver.findElement(By.className("swal-text")).getText().equals("has been successfully updated!"));
-//		
-//		driver.findElement(By.className("swal-button")).click();
-//		
-//		assertTrue(driver.findElement(By.xpath("//*[@id=\"cart-subtotals\"]")).getText().equals("1440.00 BAM"));
-//		
-//		assertTrue(driver.findElement(By.xpath("//*[@id=\"total-price\"]")).getText().equals("1440.00 BAM"));		
-//	}
-	
-//	@Test
-//	public void CouponTest() {
-//		
-//		driver.findElement(By.id("cart-link")).click();
-//		
-//		assertEquals(defaultUrl + "#cart", driver.getCurrentUrl());
-//		
-//		/*
-//		 * Validan: 2GV1bKhA2
-//			Expired: uADp6ZiO
-//			A za invalid, lupi bilo kakav string.*/
-//		
-//		driver.findElement(By.id("enter-coupon")).sendKeys("2GV1bKhA2");
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		driver.findElement(By.id("apply-coupon-button")).click();
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("swal-modal")));
-//				
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		driver.findElement(By.className("swal-button")).click();
-//		
-//		assertTrue(driver.findElement(By.className("swal-title")).getText().equals("Invalid operation."));
-//		
-//		driver.navigate().to(defaultUrl);
-//		
-//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\\\"landing\\\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div")));
-//		
-//		WebElement item = driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div"));
-//		
-//		Actions builder = new Actions(driver);
-//		
-//		Action hoverOverItem = builder.moveToElement(item).pause(1000).build();
-//		
-//		hoverOverItem.perform();
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//				
-//		driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div/div/button")).click();
-//		
-//		try {
-//			Thread.sleep(2000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		assertTrue(driver.findElement(By.className("swal-modal")).isDisplayed());
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		driver.findElement(By.className("swal-button")).click();
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		driver.findElement(By.id("cart-link")).click();
-//		
-//		assertEquals(defaultUrl + "#cart", driver.getCurrentUrl());
-//		
-//		/*
-//		 * Validan: 2GV1bKhA2
-//			Expired: uADp6ZiO
-//			A za invalid, lupi bilo kakav string.*/
-//		
-//		driver.findElement(By.id("enter-coupon")).sendKeys("2GV1bKhA2");
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		driver.findElement(By.id("apply-coupon-button")).click();
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("swal-modal")));
-//				
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		driver.findElement(By.className("swal-button")).click();
-//		
-//		assertTrue(driver.findElement(By.id("enter-coupon")).getAttribute("placeholder").equals("Coupon has been applied."));
-//		
-//		assertTrue(driver.findElement(By.id("apply-coupon-button")).getText().equals("5% DISCOUNT"));
-//		
-//	}
-//	
-//	@Test
-//	public void CouponTest() {
-//		
-//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\\\"landing\\\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div")));
-//		
-//		WebElement item = driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div"));
-//		
-//		Actions builder = new Actions(driver);
-//		
-//		Action hoverOverItem = builder.moveToElement(item).pause(1000).build();
-//		
-//		hoverOverItem.perform();
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//				
-//		driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div/div/button")).click();
-//		
-//		try {
-//			Thread.sleep(2000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		assertTrue(driver.findElement(By.className("swal-modal")).isDisplayed());
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		driver.findElement(By.className("swal-button")).click();
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		driver.findElement(By.id("cart-link")).click();
-//		
-//		assertEquals(defaultUrl + "#cart", driver.getCurrentUrl());
-//		
-//		assertTrue(driver.findElement(By.id("cart-subtotals")).getText().equals("90.00 BAM"));
-//		assertTrue(driver.findElement(By.id("total-price")).getText().equals("90.00 BAM"));
-//		
-//		driver.findElement(By.xpath("//*[@id=\"3\"]/td[4]/div/button[2]")).click();
-//		
-//		driver.findElement(By.id("update-cart-button")).click();
-//		
-//		try {
-//			Thread.sleep(2000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		assertTrue(driver.findElement(By.className("swal-modal")).isDisplayed());
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		driver.findElement(By.className("swal-button")).click();
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		assertTrue(driver.findElement(By.id("cart-subtotals")).getText().equals("180.00 BAM"));
-//		
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("header-wrapicon1")));
-//		
-//		WebElement login = driver.findElement(By.className("header-wrapicon1"));
-//		
-//		login.click();
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//				
-//		driver.findElement(By.xpath("//*[@id=\"email\"]")).sendKeys("harismuha123@gmail.com");
-//		
-//		try {
-//			Thread.sleep(500);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		driver.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys("majmunica1");
-//		
-//		try {
-//			Thread.sleep(500);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		driver.findElement(By.xpath("//*[@id=\"loginForm\"]/button")).click();
-//		
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("swal-modal")));
-//		
-//		try {
-//			Thread.sleep(500);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		assertTrue(driver.findElement(By.className("swal-modal")).isDisplayed());
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		driver.findElement(By.className("swal-button")).click();		
-//		
-//		driver.navigate().to(defaultUrl + "#cart");
-//		
-//		assertTrue(driver.findElement(By.id("cart-subtotals")).getText().equals("171.00 BAM"));
-//		assertTrue(driver.findElement(By.id("total-price")).getText().equals("171.00 BAM"));
-//		
-//		
-//		
-//	}
-//	
-//	@Test
-//	public void ShippingFeeTest() {
-//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\\\"landing\\\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div")));
-//		
-//		WebElement item = driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div"));
-//		
-//		Actions builder = new Actions(driver);
-//		
-//		Action hoverOverItem = builder.moveToElement(item).pause(1000).build();
-//		
-//		hoverOverItem.perform();
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//				
-//		driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div/div/button")).click();
-//		
-//		try {
-//			Thread.sleep(2000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		assertTrue(driver.findElement(By.className("swal-modal")).isDisplayed());
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		driver.findElement(By.className("swal-button")).click();
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		driver.findElement(By.id("cart-link")).click();
-//		
-//		assertEquals(defaultUrl + "#cart", driver.getCurrentUrl());
-//		
-//		assertTrue(driver.findElement(By.xpath("//*[@id=\"country-fee\"]")).getText().equals("0.00 BAM"));
-//		
-//		Select countries = new Select(driver.findElement(By.id("country-selection")));
-//		
-//		List<WebElement> listOfCountries = countries.getOptions();
-//		
-//		countries.selectByIndex(0);
-//		
-//		driver.findElement(By.id("update-totals")).click();
-//		
-//		try {
-//			Thread.sleep(2000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		assertTrue(driver.findElement(By.className("swal-modal")).isDisplayed());
-//		
-//		assertTrue(driver.findElement(By.className("swal-title")).getText().equals("Incorrect selection!"));
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		driver.findElement(By.className("swal-button")).click();
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		countries.selectByIndex(2);
-//		
-//		assertFalse(driver.findElement(By.xpath("//*[@id=\"country-fee\"]")).getText().equals("0.00 BAM"));
-//		
-//		driver.findElement(By.id("update-totals")).click();
-//		
-//		try {
-//			Thread.sleep(2000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		assertTrue(driver.findElement(By.className("swal-modal")).isDisplayed());
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		driver.findElement(By.className("swal-button")).click();
-//		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		assertTrue(driver.findElement(By.xpath("//*[@id=\"total-price\"]")).getText().equals("105.00 BAM"));
-//		
-//	}
+	@Test
+	public void EmptyCartTest() {
+		driver.findElement(By.id("cart-link")).click();
+		
+		assertEquals(defaultUrl + "#cart", driver.getCurrentUrl());
+		
+		assertTrue(driver.findElement(By.xpath("//*[@id=\"cart\"]/section[2]/div/div[1]/div/table/tr/td[1]/p")).isDisplayed());
+		
+		assertTrue(driver.findElement(By.xpath("//*[@id=\"cart-subtotals\"]")).getText().equals("0.00 BAM"));
+		assertTrue(driver.findElement(By.xpath("//*[@id=\"total-price\"]")).getText().equals("0.00 BAM"));
+		
+		assertTrue(driver.findElement(By.xpath("//*[@id=\"cart\"]/section[2]/div/div[1]/div/table/tr/td[2]/div/button")).isDisplayed());
+		driver.findElement(By.xpath("//*[@id=\"cart\"]/section[2]/div/div[1]/div/table/tr/td[2]/div/button")).click();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertEquals(defaultUrl + "#shop", driver.getCurrentUrl());
+		
+	}
 	
 	@Test
 	public void NotEmptyCartTest() {
@@ -573,6 +78,521 @@ public class CartTestClass {
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\\\"landing\\\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div")));
 		
 		WebElement item = driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div"));
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		js.executeScript("arguments[0].scrollIntoView();", item);
+		
+		Actions builder = new Actions(driver);
+		
+		Action hoverOverItem = builder.moveToElement(item).pause(1000).build();
+		
+		hoverOverItem.perform();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div/div/button")).click();
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertTrue(driver.findElement(By.className("swal-modal")).isDisplayed());
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.className("swal-button")).click();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.id("cart-link")).click();
+		
+		assertEquals(defaultUrl + "#cart", driver.getCurrentUrl());
+		
+		for (int i = 1; i < 5; i++) {
+			assertTrue(driver.findElement(By.className("column-"+i)).isDisplayed());
+		}
+		
+		assertTrue(driver.findElement(By.className("table-row")).isDisplayed());
+		
+		assertTrue(driver.findElement(By.xpath("//*[@id=\"p-quantity\"]")).getAttribute("value").equals("1"));
+		
+		driver.findElement(By.xpath("//*[@id=\"3\"]/td[4]/div/button[2]")).click();
+		
+		driver.findElement(By.xpath("//*[@id=\"3\"]/td[4]/div/button[2]")).click();
+		
+		assertTrue(driver.findElement(By.xpath("//*[@id=\"p-quantity\"]")).getAttribute("value").equals("3"));
+		
+		driver.findElement(By.xpath("//*[@id=\"3\"]/td[4]/div/button[1]")).click();
+		
+		driver.findElement(By.xpath("//*[@id=\"3\"]/td[4]/div/button[1]")).click();
+		
+		assertTrue(driver.findElement(By.xpath("//*[@id=\"p-quantity\"]")).getAttribute("value").equals("1"));
+		
+		driver.findElement(By.xpath("//*[@id=\"p-quantity\"]")).sendKeys("5");
+		
+		assertTrue(driver.findElement(By.xpath("//*[@id=\"p-quantity\"]")).getAttribute("value").equals("15"));
+		
+		assertTrue(driver.findElement(By.xpath("//*[@id=\"cart-subtotals\"]")).getText().equals("90.00 BAM"));
+		
+		assertTrue(driver.findElement(By.xpath("//*[@id=\"total-price\"]")).getText().equals("90.00 BAM"));
+		
+		driver.findElement(By.xpath("//*[@id=\"3\"]/td[4]/div/button[2]")).click();
+		
+		driver.findElement(By.xpath("//*[@id=\"update-cart-button\"]")).click();
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("swal-modal")));
+		
+		assertTrue(driver.findElement(By.className("swal-text")).getText().equals("has been successfully updated!"));
+		
+		driver.findElement(By.className("swal-button")).click();
+		
+		assertTrue(driver.findElement(By.xpath("//*[@id=\"cart-subtotals\"]")).getText().equals("1440.00 BAM"));
+		
+	}
+	
+	@Test
+	public void CouponTest() {
+		
+		driver.findElement(By.id("cart-link")).click();
+		
+		assertEquals(defaultUrl + "#cart", driver.getCurrentUrl());
+		
+		/*
+		 * Validan: 2GV1bKhA2
+			Expired: uADp6ZiO
+			A za invalid, lupi bilo kakav string.*/
+		
+		driver.findElement(By.id("enter-coupon")).sendKeys("2GV1bKhA2");
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.id("apply-coupon-button")).click();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("swal-modal")));
+				
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.className("swal-button")).click();
+		
+		assertTrue(driver.findElement(By.className("swal-title")).getText().equals("Invalid operation."));
+		
+		driver.navigate().to(defaultUrl);
+		
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\\\"landing\\\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div")));
+		
+		WebElement item = driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div"));
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		js.executeScript("arguments[0].scrollIntoView();", item);
+		
+		Actions builder = new Actions(driver);
+		
+		Action hoverOverItem = builder.moveToElement(item).pause(1000).build();
+		
+		hoverOverItem.perform();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div/div/button")).click();
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertTrue(driver.findElement(By.className("swal-modal")).isDisplayed());
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.className("swal-button")).click();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.id("cart-link")).click();
+		
+		assertEquals(defaultUrl + "#cart", driver.getCurrentUrl());
+		
+		/*
+		 * Validan: 2GV1bKhA2
+			Expired: uADp6ZiO
+			A za invalid, lupi bilo kakav string.*/
+		
+		driver.findElement(By.id("enter-coupon")).sendKeys("2GV1bKhA2");
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.id("apply-coupon-button")).click();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("swal-modal")));
+				
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.className("swal-button")).click();
+		
+		assertTrue(driver.findElement(By.id("enter-coupon")).getAttribute("placeholder").equals("Coupon has been applied."));
+		
+		assertTrue(driver.findElement(By.id("apply-coupon-button")).getText().equals("5% DISCOUNT"));
+		
+	}
+	
+	@Test
+	public void StackDiscountTest() {
+		
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\\\"landing\\\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div")));
+		
+		WebElement item = driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div"));
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		js.executeScript("arguments[0].scrollIntoView();", item);
+		
+		Actions builder = new Actions(driver);
+		
+		Action hoverOverItem = builder.moveToElement(item).pause(1000).build();
+		
+		hoverOverItem.perform();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div/div/button")).click();
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertTrue(driver.findElement(By.className("swal-modal")).isDisplayed());
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.className("swal-button")).click();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.id("cart-link")).click();
+		
+		assertEquals(defaultUrl + "#cart", driver.getCurrentUrl());
+		
+		assertTrue(driver.findElement(By.id("cart-subtotals")).getText().equals("90.00 BAM"));
+		assertTrue(driver.findElement(By.id("total-price")).getText().equals("90.00 BAM"));
+		
+		driver.findElement(By.xpath("//*[@id=\"3\"]/td[4]/div/button[2]")).click();
+		
+		driver.findElement(By.id("update-cart-button")).click();
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertTrue(driver.findElement(By.className("swal-modal")).isDisplayed());
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.className("swal-button")).click();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertTrue(driver.findElement(By.id("cart-subtotals")).getText().equals("180.00 BAM"));
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("header-wrapicon1")));
+		
+		WebElement login = driver.findElement(By.className("header-wrapicon1"));
+		
+		login.click();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		driver.findElement(By.xpath("//*[@id=\"email\"]")).sendKeys("harismuha123@gmail.com");
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys("majmunica1");
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.xpath("//*[@id=\"loginForm\"]/button")).click();
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("swal-modal")));
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertTrue(driver.findElement(By.className("swal-modal")).isDisplayed());
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.className("swal-button")).click();		
+		
+		driver.navigate().to(defaultUrl + "#cart");
+		
+		assertTrue(driver.findElement(By.id("cart-subtotals")).getText().equals("171.00 BAM"));
+		assertTrue(driver.findElement(By.id("total-price")).getText().equals("171.00 BAM"));
+		
+		
+		
+	}
+	
+	@Test
+	public void ShippingFeeTest() {
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\\\"landing\\\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div")));
+		
+		WebElement item = driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div"));
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		js.executeScript("arguments[0].scrollIntoView();", item);
+		
+		Actions builder = new Actions(driver);
+		
+		Action hoverOverItem = builder.moveToElement(item).pause(1000).build();
+		
+		hoverOverItem.perform();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div/div/button")).click();
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertTrue(driver.findElement(By.className("swal-modal")).isDisplayed());
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.className("swal-button")).click();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.id("cart-link")).click();
+		
+		assertEquals(defaultUrl + "#cart", driver.getCurrentUrl());
+		
+		assertTrue(driver.findElement(By.xpath("//*[@id=\"country-fee\"]")).getText().equals("0.00 BAM"));
+		
+		Select countries = new Select(driver.findElement(By.id("country-selection")));
+		
+		List<WebElement> listOfCountries = countries.getOptions();
+		
+		countries.selectByIndex(0);
+		
+		driver.findElement(By.id("update-totals")).click();
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertTrue(driver.findElement(By.className("swal-modal")).isDisplayed());
+		
+		assertTrue(driver.findElement(By.className("swal-title")).getText().equals("Incorrect selection!"));
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.className("swal-button")).click();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		countries.selectByIndex(2);
+		
+		assertFalse(driver.findElement(By.xpath("//*[@id=\"country-fee\"]")).getText().equals("0.00 BAM"));
+		
+		driver.findElement(By.id("update-totals")).click();
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertTrue(driver.findElement(By.className("swal-modal")).isDisplayed());
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.className("swal-button")).click();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertTrue(driver.findElement(By.xpath("//*[@id=\"total-price\"]")).getText().equals("105.00 BAM"));
+		
+	}
+	
+	@Test
+	public void ProceedToCheckoutTest() {
+		
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\\\"landing\\\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div")));
+		
+		WebElement item = driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div"));
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		js.executeScript("arguments[0].scrollIntoView();", item);
 		
 		Actions builder = new Actions(driver);
 		
