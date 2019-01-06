@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -12,6 +14,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class RegistrationLoginTestCase {
@@ -32,7 +35,7 @@ public class RegistrationLoginTestCase {
 		
 		driver = new ChromeDriver(options);
 		
-		wait = new WebDriverWait(driver, 20);
+		wait = new WebDriverWait(driver, 60);
 		
 		defaultUrl = "https://flink-webshop.herokuapp.com/";
 		
@@ -506,11 +509,121 @@ public class RegistrationLoginTestCase {
 	}
 	
 	
-//	@Test
-//	public void SignUpTest() {
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("header-wrapicon1")));
-//		
-//	}
+	@Test
+	public void SignUpTest() {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("header-wrapicon1")));
+		
+		driver.findElement(By.className("header-wrapicon1")).click();
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.id("sign-up-redirect")).click();
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.id("go-back-button")).click();
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.id("sign-up-redirect")).click();
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.id("sign-up-button")).click();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertTrue(driver.findElement(By.xpath("//*[@id=\"username-error\"]")).isDisplayed());
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Select countries = new Select(driver.findElement(By.xpath("//*[@id=\"country-list\"]")));
+		
+		List<WebElement> listOfCountries = countries.getOptions();
+		int index = 0;
+		
+		for (WebElement webElement : listOfCountries) {
+			countries.selectByIndex(index);
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			assertTrue(webElement.isSelected());
+			index++;
+		}
+		
+		countries.selectByIndex(0);
+		
+		String[] inputFields = {"username", "realname",  "password", "rePassword", "address"};
+		String[] numericalFields = {"phone", "zipcode"};
+		String emailField = "email";
+		
+		for (String field : inputFields) {
+			WebElement input = driver.findElement(By.id(field));
+			assertTrue(input.isDisplayed());
+			
+			input.sendKeys("hmuhibic");
+		}
+		
+		for (String field : numericalFields) {
+			WebElement input = driver.findElement(By.id(field));
+			assertTrue(input.isDisplayed());
+			
+			input.sendKeys("666666");
+		}
+		
+		Random rand = new Random(System.currentTimeMillis());
+		
+		driver.findElement(By.id(emailField)).sendKeys("haris" + rand.nextInt(10000) +"@stu.ibu.edu.ba");
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.id("sign-up-button")).click();
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("swal-modal")));
+		
+		assertTrue(driver.findElement(By.className("swal-modal")).isDisplayed());
+		
+		driver.findElement(By.className("swal-button")).click();
+		
+	}
 
 	@After
 	public void tearDown() throws Exception {
