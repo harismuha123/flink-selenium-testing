@@ -3,12 +3,13 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="/home/chern0/Downloads/selenium-java-3.141.5/client-combined-3.141.5.jar"/>
-	<classpathentry kind="lib" path="/home/chern0/Downloads/selenium-java-3.141.5/client-combined-3.141.5-sources.jar"/>
-	<classpathentry kind="lib" path="/home/chern0/Downloads/selenium-java-3.141.5/libs/byte-buddy-1.8.15.jar"/>
-	<classpathentry kind="lib" path="/home/chern0/Downloads/selenium-java-3.141.5/libs/commons-exec-1.3.jar"/>
-	<classpathentry kind="lib" path="/home/chern0/Downloads/selenium-java-3.141.5/libs/guava-25.0-jre.jar"/>
-	<classpathentry kind="lib" path="/home/chern0/Downloads/selenium-java-3.141.5/libs/okhttp-3.11.0.jar"/>
-	<classpathentry kind="lib" path="/home/chern0/Downloads/selenium-java-3.141.5/libs/okio-1.14.0.jar"/>
+	<classpathentry kind="lib" path="/home/aldin-sxr/Documents/Software/eclipse-dsl-2018-12-R-linux-gtk-x86_64/libs/okio-1.14.0.jar"/>
+	<classpathentry kind="lib" path="/home/aldin-sxr/Documents/Software/eclipse-dsl-2018-12-R-linux-gtk-x86_64/libs/okhttp-3.11.0.jar"/>
+	<classpathentry kind="lib" path="/home/aldin-sxr/Documents/Software/eclipse-dsl-2018-12-R-linux-gtk-x86_64/libs/guava-25.0-jre.jar"/>
+	<classpathentry kind="lib" path="/home/aldin-sxr/Documents/Software/eclipse-dsl-2018-12-R-linux-gtk-x86_64/libs/commons-exec-1.3.jar"/>
+	<classpathentry kind="lib" path="/home/aldin-sxr/Documents/Software/eclipse-dsl-2018-12-R-linux-gtk-x86_64/libs/byte-buddy-1.8.15.jar"/>
+	<classpathentry kind="lib" path="/home/aldin-sxr/Documents/Software/eclipse-dsl-2018-12-R-linux-gtk-x86_64/client-combined-3.141.59-sources.jar"/>
+	<classpathentry kind="lib" path="/home/aldin-sxr/Documents/Software/eclipse-dsl-2018-12-R-linux-gtk-x86_64/client-combined-3.141.59.jar"/>
+	<classpathentry kind="lib" path="/home/aldin-sxr/Documents/Business/University/it-year3-materials/semester1/software-verification-and-testing/project/flink-selenium-testing/bin"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
