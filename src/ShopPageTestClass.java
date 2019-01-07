@@ -40,6 +40,9 @@ public class ShopPageTestClass {
 		/* Make sure that the sidebar item is selected */
 		String activeClass = driver.findElement(By.xpath("//*[@id=\"shop-link\"]")).findElement(By.xpath("..")).getAttribute("class");
 		assertEquals("sale-noti", activeClass);
+		/* Go back to the home page */
+		driver.navigate().back();
+		assertEquals("https://flink-webshop.herokuapp.com/#landing", driver.getCurrentUrl());
 	}
 	
 	@Test

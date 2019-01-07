@@ -76,6 +76,7 @@ public class ShoppingCartPopupTestClass {
 		info = driver.findElement(By.className("header-cart-item-info")).getText();
 		totalPrice = driver.findElement(By.className("header-cart-total")).getText();
 		Thread.sleep(2000);
+		assertEquals("1", driver.findElement(By.id("cart-notification")).getText());
 		assertEquals("1 x 90.00 BAM", info);
 		assertEquals("Totals: 90.00 BAM", totalPrice);
 		/* Clear the cart and re-assert */
@@ -83,6 +84,7 @@ public class ShoppingCartPopupTestClass {
 		Thread.sleep(2000);
 		String emptyText = driver.findElement(By.xpath("/html/body/header/div[1]/div[1]/div[1]/div/div/ul/p")).getText();
 		String emptyTotal = driver.findElement(By.className("header-cart-total")).getText();
+		assertEquals("0", driver.findElement(By.id("cart-notification")).getText());
 		assertEquals("Your cart is currently empty.", emptyText);
 		assertEquals("Totals: 0.00 BAM", emptyTotal);
 	}
