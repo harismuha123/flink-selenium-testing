@@ -27,7 +27,7 @@ public class CartTestClass {
 	
 	@Before
 	public void setUp() throws Exception {
-		path = "/home/chern0/eclipse/java-2018-09/chromedriver";
+		path = "/usr/local/bin/chromedriver";
 		System.setProperty("webdriver.chrome.driver", path);
 		
 		ChromeOptions options = new ChromeOptions();
@@ -309,7 +309,7 @@ public class CartTestClass {
 	@Test
 	public void StackDiscountTest() {
 		
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\\\"landing\\\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div")));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div")));
 		
 		WebElement item = driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div"));
 		
@@ -459,7 +459,7 @@ public class CartTestClass {
 	
 	@Test
 	public void ShippingFeeTest() {
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\\\"landing\\\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div")));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div")));
 		
 		WebElement item = driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div"));
 		
@@ -512,6 +512,13 @@ public class CartTestClass {
 		assertEquals(defaultUrl + "#cart", driver.getCurrentUrl());
 		
 		assertTrue(driver.findElement(By.xpath("//*[@id=\"country-fee\"]")).getText().equals("0.00 BAM"));
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		Select countries = new Select(driver.findElement(By.id("country-selection")));
 		
@@ -586,7 +593,7 @@ public class CartTestClass {
 	@Test
 	public void ProceedToCheckoutTest() {
 		
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\\\"landing\\\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div")));
 		
 		WebElement item = driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div"));
 		
@@ -814,6 +821,8 @@ public class CartTestClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("swal-modal")));
 		
 		assertTrue(driver.findElement(By.className("swal-modal")).isDisplayed());
 		

@@ -25,7 +25,7 @@ public class MainScreenTestClass {
 	
 	@Before
 	public void setUp() throws Exception {
-		path = "/home/chern0/eclipse/java-2018-09/chromedriver";
+		path = "/usr/local/bin/chromedriver";
 		System.setProperty("webdriver.chrome.driver", path);
 		
 		ChromeOptions options = new ChromeOptions();
@@ -140,7 +140,9 @@ public class MainScreenTestClass {
 	@Test
 	public void CategoryLinksTest() {
 		
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"category-list\"]/div[1]/div/div/a")));
 		
 		driver.findElement(By.xpath("//*[@id=\"category-list\"]/div[1]/div/div/a")).click();
 		
@@ -179,6 +181,8 @@ public class MainScreenTestClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"category-list\"]/div[2]/div/div/a")));
 		
 		driver.findElement(By.xpath("//*[@id=\"category-list\"]/div[2]/div/div/a")).click();
 		
@@ -273,30 +277,12 @@ public class MainScreenTestClass {
 	@Test
 	public void HoverProductTest() {
 				
-		WebDriverWait wait = new WebDriverWait(driver, 60);
-		
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\\\"landing\\\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div")));
-		
-		WebElement item = driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div"));
-		
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		
-		js.executeScript("arguments[0].scrollIntoView();", item);
-	
+		String xpath = "//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div/div";
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
 		Actions builder = new Actions(driver);
-		
-		Action hoverOverItem = builder.moveToElement(item).pause(1000).build();
-		
-		hoverOverItem.perform();
-		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-				
-		driver.findElement(By.xpath("//*[@id=\"landing\"]/section[3]/div/div[2]/div/div/div/div[7]/div/div[1]/div/div/button")).click();
+		/* Add two items to the cart */
+		Action addToCart = builder.moveToElement(driver.findElement(By.xpath(xpath))).pause(1000).click().build();
+		addToCart.perform();
 		
 		try {
 			Thread.sleep(2000);
@@ -369,7 +355,7 @@ public class MainScreenTestClass {
 		moveToCard.perform();
 		
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

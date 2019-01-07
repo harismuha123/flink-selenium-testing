@@ -15,7 +15,7 @@ public class SidebarTestClass {
 	
 	@Before
 	public void setUp() throws Exception {
-		path = "/home/chern0/eclipse/java-2018-09/chromedriver";
+		path = "/usr/local/bin/chromedriver";
 		System.setProperty("webdriver.chrome.driver", path);
 		
 		ChromeOptions options = new ChromeOptions();

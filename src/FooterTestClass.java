@@ -22,7 +22,7 @@ public class FooterTestClass {
 
 	@Before
 	public void setUp() throws Exception {
-		String path = "/home/chern0/eclipse/java-2018-09/chromedriver";
+		String path = "/usr/local/bin/chromedriver";
 		System.setProperty("webdriver.chrome.driver", path);
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--start-maximized");
